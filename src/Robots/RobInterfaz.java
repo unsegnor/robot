@@ -30,6 +30,8 @@ import robocode.WinEvent;
 public class RobInterfaz extends Robot {
 
     RobotInput ri = new RobotInput();
+    
+    //RobotOutput ro = new RobotOutput();
 
     @Override
     public void onBulletHit(BulletHitEvent event) {
@@ -139,7 +141,60 @@ public class RobInterfaz extends Robot {
     }
     
 
-    public void setOutput(boolean[] output) {
-        
+    public void setOutput(RobotOutput robotOutput) {
+        //ro.copy(robotOutput);
     }
+
+    @Override
+    public void run() {
+        
+        while(true){
+        
+        //Obtener entradas
+        RobotInput input = this.getInput();
+        //Calcular salidas
+        RobotOutput output = this.responder(input);
+        
+        //Actuar según las salidas
+        if(output.ahead) 
+            ahead(output.v_ahead);
+        if(output.back) 
+            back(output.v_back);
+        if(output.fire) 
+            fire(output.v_fire);
+        if(output.fireBullet) 
+            fireBullet(output.v_firebullet);
+        if(output.scan)
+            scan();
+        if(output.adjustgunforrobot)
+            setAdjustGunForRobotTurn(output.v_adjustgunforrobot);
+        if(output.adjustradarforgun)
+            setAdjustRadarForGunTurn(output.v_adjustradarforgun);
+        if(output.adjustradarforrobot)
+            setAdjustRadarForRobotTurn(output.v_adjustradarforrobot);
+        if(output.stop)
+            stop();
+        if(output.gunleft)
+            turnGunLeft(output.v_gunleft);
+        if(output.gunright)
+            turnGunRight(output.v_gunright);
+        if(output.turnleft)
+            turnLeft(output.v_turnleft);
+        if(output.turnright)
+            turnRight(output.v_turnright);
+        if(output.radarleft)
+            turnRadarLeft(output.v_radarleft);
+        if(output.radarright)
+            turnRadarRight(output.v_radarright);
+        
+        //Reiniciar las entradas
+        this.reiniciar_input();
+        }
+    }
+
+    public RobotOutput responder(RobotInput input) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
