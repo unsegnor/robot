@@ -20,17 +20,73 @@ class InHitRobotEvent {
     }
     
     public void copy(HitRobotEvent event){
-        bearing = event.getBearing();
-        bearingRadians = event.getBearingRadians();
-        energy = event.getEnergy();
-        myfault = event.isMyFault();
+        setBearing(event.getBearing());
+        setBearingRadians(event.getBearingRadians());
+        setEnergy(event.getEnergy());
+        setMyfault(event.isMyFault());
     }
 
     void reiniciar() {
-        this.bearing = 0d;
-        this.bearingRadians = 0d;
-        this.energy = 0d;
-        this.myfault = false;
+        this.setBearing(0d);
+        this.setBearingRadians(0d);
+        this.setEnergy(0d);
+        this.setMyfault(false);
+    }
+
+    /**
+     * @return the bearing
+     */
+    public double getBearing() {
+        return bearing;
+    }
+
+    /**
+     * @param bearing the bearing to set
+     */
+    public void setBearing(double bearing) {
+        this.bearing = bearing;
+    }
+
+    /**
+     * @return the bearingRadians
+     */
+    public double getBearingRadians() {
+        return bearingRadians;
+    }
+
+    /**
+     * @param bearingRadians the bearingRadians to set
+     */
+    public void setBearingRadians(double bearingRadians) {
+        this.bearingRadians = bearingRadians;
+    }
+
+    /**
+     * @return the energy
+     */
+    public double getEnergy() {
+        return energy;
+    }
+
+    /**
+     * @param energy the energy to set
+     */
+    public void setEnergy(double energy) {
+        this.energy = energy;
+    }
+
+    /**
+     * @return the myfault
+     */
+    public boolean isMyfault() {
+        return myfault;
+    }
+
+    /**
+     * @param myfault the myfault to set
+     */
+    public void setMyfault(boolean myfault) {
+        this.myfault = myfault;
     }
     
 }

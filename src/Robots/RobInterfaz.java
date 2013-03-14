@@ -35,102 +35,102 @@ public class RobInterfaz extends Robot {
 
     @Override
     public void onBulletHit(BulletHitEvent event) {
-        ri.onbullethit = true;
-        ri.obh_event.copy(event);
+        ri.setOnbullethit(true);
+        ri.getObh_event().copy(event);
     }
 
     @Override
     public void onBulletHitBullet(BulletHitBulletEvent event) {
-        ri.onbullethitbullet = true;
-        ri.obhb_event.copy(event);
+        ri.setOnbullethitbullet(true);
+        ri.getObhb_event().copy(event);
     }
 
     @Override
     public void onBulletMissed(BulletMissedEvent event) {
-        ri.onbulletmissed = true;
-        ri.obm_event.copy(event);
+        ri.setOnbulletmissed(true);
+        ri.getObm_event().copy(event);
     }
 
     @Override
     public void onDeath(DeathEvent event) {
-        ri.ondeath = true;
+        ri.setOndeath(true);
     }
 
     @Override
     public void onHitByBullet(HitByBulletEvent event) {
-        ri.onhitbybullet = true;
-        ri.ohbb_event.copy(event);
+        ri.setOnhitbybullet(true);
+        ri.getOhbb_event().copy(event);
     }
 
     @Override
     public void onHitRobot(HitRobotEvent event) {
-        ri.onhitrobotevent = true;
-        ri.ohr_event.copy(event);
+        ri.setOnhitrobotevent(true);
+        ri.getOhr_event().copy(event);
     }
 
     @Override
     public void onHitWall(HitWallEvent event) {
-        ri.onhitwall = true;
-        ri.ohw_event.copy(event);
+        ri.setOnhitwall(true);
+        ri.getOhw_event().copy(event);
     }
 
     @Override
     public void onRobotDeath(RobotDeathEvent event) {
-        ri.onrobotdeath = true;
-        ri.ord_event.copy(event);
+        ri.setOnrobotdeath(true);
+        ri.getOrd_event().copy(event);
     }
 
     @Override
     public void onScannedRobot(ScannedRobotEvent event) {
-        ri.onscannedrobot = true;
-        ri.osr_event.copy(event);
+        ri.setOnscannedrobot(true);
+        ri.getOsr_event().copy(event);
     }
 
     @Override
     public void onWin(WinEvent event) {
-        ri.onwin = true;
-        ri.ow_event.copy(event);
+        ri.setOnwin(true);
+        ri.getOw_event().copy(event);
     }
 
     @Override
     public void onRoundEnded(RoundEndedEvent event) {
-        ri.onroundended = true;
-        ri.ore_event.copy(event);
+        ri.setOnroundended(true);
+        ri.getOre_event().copy(event);
     }
 
     @Override
     public void onBattleEnded(BattleEndedEvent event) {
-        ri.obattleended = true;
-        ri.obe_event.copy(event);
+        ri.setObattleended(true);
+        ri.getObe_event().copy(event);
     }
 
     @Override
     public void onStatus(StatusEvent e) {
-        ri.onstatus = true;
-        ri.os_event.copy(e);
+        ri.setOnstatus(true);
+        ri.getOs_event().copy(e);
     }
 
     
     public RobotInput getInput(){
         //Leer el estado de todas las variables del entorno ahora y devolve junto con las que se han actualizado con los 
         //eventos
-        ri.battleFieldHeight = getBattleFieldHeight();
-        ri.battleFieldWidth = getBattleFieldWidth();
-        ri.energy = getEnergy();
-        ri.gunCoolingRate = getGunCoolingRate();
-        ri.gunHeating = getGunHeading();
-        ri.gunHeat = getGunHeat();
-        ri.heading = getHeading();
-        ri.height = getHeight();
-        ri.numRounds = getNumRounds();
-        ri.others = getOthers();
-        ri.radarHeating = getRadarHeading();
-        ri.roundNum = getRoundNum();
-        ri.time = getTime();
-        ri.velocity = getVelocity();
-        ri.width = getWidth();
-        ri.x = getX();
-        ri.y = getY();
+        ri.setBattleFieldHeight(getBattleFieldHeight());
+        ri.setBattleFieldWidth(getBattleFieldWidth());
+        ri.setEnergy(getEnergy());
+        ri.setGunCoolingRate(getGunCoolingRate());
+        ri.setGunHeating(getGunHeading());
+        ri.setGunHeat(getGunHeat());
+        ri.setHeading(getHeading());
+        ri.setHeight(getHeight());
+        ri.setNumRounds(getNumRounds());
+        ri.setOthers(getOthers());
+        ri.setRadarHeating(getRadarHeading());
+        ri.setRoundNum(getRoundNum());
+        ri.setTime(getTime());
+        ri.setVelocity(getVelocity());
+        ri.setWidth(getWidth());
+        ri.setX(getX());
+        ri.setY(getY());
         
         return ri;
     }
@@ -156,36 +156,36 @@ public class RobInterfaz extends Robot {
         RobotOutput output = this.responder(input);
         
         //Actuar según las salidas
-        if(output.ahead) 
-            ahead(output.v_ahead);
-        if(output.back) 
-            back(output.v_back);
-        if(output.fire) 
-            fire(output.v_fire);
-        if(output.fireBullet) 
-            fireBullet(output.v_firebullet);
-        if(output.scan)
+        if(output.isAhead()) 
+            ahead(output.getV_ahead());
+        if(output.isBack()) 
+            back(output.getV_back());
+        if(output.isFire()) 
+            fire(output.getV_fire());
+        if(output.isFireBullet()) 
+            fireBullet(output.getV_firebullet());
+        if(output.isScan())
             scan();
-        if(output.adjustgunforrobot)
-            setAdjustGunForRobotTurn(output.v_adjustgunforrobot);
-        if(output.adjustradarforgun)
-            setAdjustRadarForGunTurn(output.v_adjustradarforgun);
-        if(output.adjustradarforrobot)
-            setAdjustRadarForRobotTurn(output.v_adjustradarforrobot);
-        if(output.stop)
+        if(output.isAdjustgunforrobot())
+            setAdjustGunForRobotTurn(output.isV_adjustgunforrobot());
+        if(output.isAdjustradarforgun())
+            setAdjustRadarForGunTurn(output.isV_adjustradarforgun());
+        if(output.isAdjustradarforrobot())
+            setAdjustRadarForRobotTurn(output.isV_adjustradarforrobot());
+        if(output.isStop())
             stop();
-        if(output.gunleft)
-            turnGunLeft(output.v_gunleft);
-        if(output.gunright)
-            turnGunRight(output.v_gunright);
-        if(output.turnleft)
-            turnLeft(output.v_turnleft);
-        if(output.turnright)
-            turnRight(output.v_turnright);
-        if(output.radarleft)
-            turnRadarLeft(output.v_radarleft);
-        if(output.radarright)
-            turnRadarRight(output.v_radarright);
+        if(output.isGunleft())
+            turnGunLeft(output.getV_gunleft());
+        if(output.isGunright())
+            turnGunRight(output.getV_gunright());
+        if(output.isTurnleft())
+            turnLeft(output.getV_turnleft());
+        if(output.isTurnright())
+            turnRight(output.getV_turnright());
+        if(output.isRadarleft())
+            turnRadarLeft(output.getV_radarleft());
+        if(output.isRadarright())
+            turnRadarRight(output.getV_radarright());
         
         //Reiniciar las entradas
         this.reiniciar_input();

@@ -21,7 +21,8 @@ import robocode.control.events.*;
          RobocodeEngine engine = new RobocodeEngine(new java.io.File("C:/Robocode")); // Run from C:/Robocode
  
          // Add our own battle listener to the RobocodeEngine 
-         engine.addBattleListener(new BattleObserver());
+         BattleObserver bo = new BattleObserver();
+         engine.addBattleListener(bo);
  
          // Show the Robocode battle view
          engine.setVisible(true);

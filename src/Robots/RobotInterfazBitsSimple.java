@@ -34,8 +34,8 @@ public class RobotInterfazBitsSimple extends RobInterfaz{
         
         //Devolver respuesta
         RobotOutput respuesta = new RobotOutput();
-        respuesta.ahead = true;
-        respuesta.v_ahead = 100;
+        respuesta.setAhead(true);
+        respuesta.setV_ahead(100);
         
         return respuesta;
     }
