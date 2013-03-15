@@ -42,13 +42,13 @@ class RobotInput {
     private double battleFieldWidth;
     private double energy;
     private double gunCoolingRate;
-    private double gunHeating;
+    private double gunHeading;
     private double gunHeat;
     private double heading;
     private double height;
     private int numRounds;
     private int others;
-    private double radarHeating;
+    private double radarHeading;
     private int roundNum;
     private long time;
     private double velocity;
@@ -496,15 +496,15 @@ class RobotInput {
     /**
      * @return the gunHeating
      */
-    public double getGunHeating() {
-        return gunHeating;
+    public double getGunHeading() {
+        return gunHeading;
     }
 
     /**
      * @param gunHeating the gunHeating to set
      */
-    public void setGunHeating(double gunHeating) {
-        this.gunHeating = gunHeating;
+    public void setGunHeading(double gunHeating) {
+        this.gunHeading = gunHeating;
     }
 
     /**
@@ -580,15 +580,15 @@ class RobotInput {
     /**
      * @return the radarHeating
      */
-    public double getRadarHeating() {
-        return radarHeating;
+    public double getRadarHeading() {
+        return radarHeading;
     }
 
     /**
      * @param radarHeating the radarHeating to set
      */
-    public void setRadarHeating(double radarHeating) {
-        this.radarHeating = radarHeating;
+    public void setRadarHeading(double radarHeating) {
+        this.radarHeading = radarHeating;
     }
 
     /**

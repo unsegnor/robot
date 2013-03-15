@@ -118,13 +118,13 @@ public class RobInterfaz extends Robot {
         ri.setBattleFieldWidth(getBattleFieldWidth());
         ri.setEnergy(getEnergy());
         ri.setGunCoolingRate(getGunCoolingRate());
-        ri.setGunHeating(getGunHeading());
+        ri.setGunHeading(getGunHeading());
         ri.setGunHeat(getGunHeat());
         ri.setHeading(getHeading());
         ri.setHeight(getHeight());
         ri.setNumRounds(getNumRounds());
         ri.setOthers(getOthers());
-        ri.setRadarHeating(getRadarHeading());
+        ri.setRadarHeading(getRadarHeading());
         ri.setRoundNum(getRoundNum());
         ri.setTime(getTime());
         ri.setVelocity(getVelocity());
