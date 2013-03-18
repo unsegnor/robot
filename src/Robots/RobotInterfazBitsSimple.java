@@ -44,17 +44,41 @@ public class RobotInterfazBitsSimple extends RobInterfaz {
         entrada.addAll(F.tobinary(osr.getVelocity()));
 
 
-        //Obtener respuesta en bits
+        //Obtener respuesta en bits (la respuesta debe tener 231 bits)
         ArrayList<Boolean> rbits = this.responder(entrada);
 
         //Transformar respuesta de bits a valores de la respuesta
+        RobotOutput respuesta = new RobotOutput();
         
-
+        respuesta.setAdjustgunforrobot(rbits.get(0));
+        respuesta.setV_adjustgunforrobot(rbits.get(1));
+        respuesta.setAdjustradarforgun(rbits.get(2));
+        respuesta.setV_adjustradarforgun(rbits.get(3));
+        respuesta.setAdjustradarforrobot(rbits.get(4));
+        respuesta.setV_adjustradarforrobot(rbits.get(5));
+        respuesta.setAhead(rbits.get(6));
+        respuesta.setV_ahead(F.s(rbits,6,30));
+        respuesta.setBack(rbits.get(30));
+        respuesta.setV_back(F.s(rbits,31, 55));
+        respuesta.setFire(rbits.get(55));
+        respuesta.setV_fire(F.s(rbits,56,80));
+        respuesta.setGunleft(rbits.get(80));
+        respuesta.setV_gunleft(F.s(rbits, 81, 105));
+        respuesta.setGunright(rbits.get(105));
+        respuesta.setV_gunright(F.s(rbits, 106,130));
+        respuesta.setRadarleft(rbits.get(130));
+        respuesta.setV_radarleft(F.s(rbits,131, 155));
+        respuesta.setRadarright(rbits.get(155));
+        respuesta.setV_radarright(F.s(rbits,156,180));
+        respuesta.setTurnleft(rbits.get(180));
+        respuesta.setV_turnleft(F.s(rbits, 181,205));
+        respuesta.setTurnright(rbits.get(205));
+        respuesta.setV_turnright(F.s(rbits, 206, 230));
+        respuesta.setScan(rbits.get(230));
+        respuesta.setStop(rbits.get(231));
 
         //Devolver respuesta
-        RobotOutput respuesta = new RobotOutput();
-        respuesta.setAhead(true);
-        respuesta.setV_ahead(100);
+        
 
         return respuesta;
     }
