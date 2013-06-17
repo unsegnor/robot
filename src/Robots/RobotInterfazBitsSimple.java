@@ -49,8 +49,7 @@ public class RobotInterfazBitsSimple extends RobInterfaz {
 
         //Transformar respuesta de bits a valores de la respuesta
         
-
-
+        
         //Devolver respuesta
         RobotOutput respuesta = new RobotOutput();
         respuesta.setAhead(true);
