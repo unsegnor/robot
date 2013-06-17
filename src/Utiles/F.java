@@ -5,6 +5,7 @@
 package Utiles;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -89,11 +90,11 @@ public class F {
         return respuesta;
     }
     //La inversa de "tobinary"
-    public static double Bool2Double(ArrayList<Boolean> b){
+    public static double Bool2Double(List<Boolean> b){
         int num = 0;
         
         //Recorrer e ir sumando
-        for(int i=b.size()-1; i>=0; i--){
+        for(int i=b.size()-1; i>0; i--){
             if(b.get(i)){
                 num++;
             }
@@ -131,5 +132,9 @@ public class F {
         }
 
         return sb.toString();
+    }
+    //Devuelve el valor de los trozos del array desde from hasta to
+    public static double s(ArrayList<Boolean> v, int from, int to){
+        return Bool2Double(v.subList(from, to));
     }
 }
