@@ -19,7 +19,6 @@ import robocode.control.events.*;
          // Create the RobocodeEngine
          //   RobocodeEngine engine = new RobocodeEngine(); // Run from current working directory
          RobocodeEngine engine = new RobocodeEngine(new java.io.File("C:/Robocode")); // Run from C:/Robocode
-         //RobocodeEngine engine = new RobocodeEngine(new java.io.File("C:/Users/Víctor/Documents/NetBeansProjects/robot/build/classes")); // Run from C:/Robocode
           
          // Add our own battle listener to the RobocodeEngine 
          BattleObserver bo = new BattleObserver();
