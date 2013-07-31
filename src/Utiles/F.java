@@ -42,6 +42,21 @@ public class F {
         return respuesta;
     }
 
+    //Normaliza un número real entre el máximo y el mínimo indicado
+    
+    public static double q(double valor, double max, double min){
+        return (valor - min) / (max - min);
+    }
+    
+    //Convierte double en boolean y viceversa
+    public static double h(boolean valor){
+        return valor?1:0;
+    }
+    
+    public static boolean h(double valor){
+        return (valor>=0.5);
+    }
+    
     public static boolean[] double2bool(double[] valores) {
         //Preparamos el vector de bits final
         int l = valores.length; //Número de valores dobles
@@ -136,5 +151,9 @@ public class F {
     //Devuelve el valor de los trozos del array desde from hasta to
     public static double s(ArrayList<Boolean> v, int from, int to){
         return Bool2Double(v.subList(from, to));
+    }
+
+    public static double q2(double valor, double max, double min) {
+        return min + ((max - min) * valor);
     }
 }

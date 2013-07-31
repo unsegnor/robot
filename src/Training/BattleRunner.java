@@ -19,7 +19,8 @@ import robocode.control.events.*;
          // Create the RobocodeEngine
          //   RobocodeEngine engine = new RobocodeEngine(); // Run from current working directory
          RobocodeEngine engine = new RobocodeEngine(new java.io.File("C:/Robocode")); // Run from C:/Robocode
- 
+         //RobocodeEngine engine = new RobocodeEngine(new java.io.File("C:/Users/Víctor/Documents/NetBeansProjects/robot/build/classes")); // Run from C:/Robocode
+          
          // Add our own battle listener to the RobocodeEngine 
          BattleObserver bo = new BattleObserver();
          engine.addBattleListener(bo);
@@ -29,10 +30,20 @@ import robocode.control.events.*;
  
          // Setup the battle specification
  
-         int numberOfRounds = 5;
+         int numberOfRounds = 1;
          BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); // 800x600
-         RobotSpecification[] selectedRobots = engine.getLocalRepository("sample.RamFire,sample.Corners");
- 
+         RobotSpecification[] selectedRobots = engine.getLocalRepository("Robots.PruebaInterfazReales*,Robots.PruebaInterfazReales*");
+         
+         System.out.println(RobocodeEngine.getRobotsDir());
+         
+         RobotSpecification[] allRobots = engine.getLocalRepository();
+         
+         System.out.println("Robots en el repositorio");
+         
+         for(RobotSpecification rs : allRobots){
+             System.out.println(rs.getName());
+         }
+         
          BattleSpecification battleSpec = new BattleSpecification(numberOfRounds, battlefield, selectedRobots);
  
          // Run our specified battle and let it run till it is over

@@ -32,6 +32,7 @@ public class MemProcNet {
         add(proc.Origen);
         add(proc.Peso);
         add(proc.Destino);
+        add(proc.Umbral);
     }
     
     //Ejecutar un paso
@@ -52,19 +53,40 @@ public class MemProcNet {
     public String toDOT(){
         StringBuilder sb = new StringBuilder();
         
-        sb.append("digraph memprocnet{");
+        sb.append("digraph memprocnet{\n");
+        
+        //Definición de los mems entradas y salidas
+        
         
         //Definición de los mems
         for(Mem m : mems){
             
+            sb.append(m.hashCode()).append("[")
+                    .append("label=").append(m.get()).append(", ")
+                    .append("shape=box")
+                    .append("];\n");
+            
+            
         }
         
         
-        
+        //Definición de los procs
         for(Proc p : procs){
             
+            //Definimos cómo se representa el proc
+            sb.append(p.hashCode()).append("[")
+                    .append("label=\"\"" )
+                    .append(", shape=\"doublecircle\"")
+                    .append("];\n");
             
-            
+            //Dibujamos el arco del orígen al proc
+            sb.append(p.hashCode()).append("->").append(p.Origen.hashCode()).append("[arrowhead=\"invodot\"];\n");
+            //De proc a Peso
+            sb.append(p.hashCode()).append("->").append(p.Peso.hashCode()).append("[arrowhead=\"inv\"];\n");
+            //De proc a Umbral
+            sb.append(p.hashCode()).append("->").append(p.Umbral.hashCode()).append("[arrowhead=\"odot\"];\n");
+            //De proc a destino
+            sb.append(p.hashCode()).append("->").append(p.Destino.hashCode()).append("[arrowhead=\"normal\"];\n");
         }
         
         sb.append("}");
