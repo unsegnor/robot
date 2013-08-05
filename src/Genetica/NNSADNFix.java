@@ -112,7 +112,8 @@ public class NNSADNFix {
             //Determinar rango (diferencia entre padres)
             //Ampliar un 20%, 10 por cada lado
             //Generar valor aleatorio dentro del rango
-            //Asignar valor al nuevo adn
+            //Asignar valor al nuevo adn 
+            
         }
         
         return respuesta;
