@@ -1,17 +1,21 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Training;
 
-import robocode.control.*;
-import robocode.control.events.*;
- 
- //
- // Application that demonstrates how to run two sample robots in Robocode using the
- // RobocodeEngine from the robocode.control package.
- //
- // @author Flemming N. Larsen
- //
- public class BattleRunner {
- 
-     public static void main(String[] args) {
+import robocode.control.BattleSpecification;
+import robocode.control.BattlefieldSpecification;
+import robocode.control.RobocodeEngine;
+import robocode.control.RobotSpecification;
+
+/**
+ *
+ * @author Víctor
+ */
+public class RandomPatternBattle {
+
+    public static void main(String[] args) {
  
          // Disable log messages from Robocode
          RobocodeEngine.setLogMessagesEnabled(false);
@@ -31,7 +35,7 @@ import robocode.control.events.*;
  
          int numberOfRounds = 1;
          BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); // 800x600
-         RobotSpecification[] selectedRobots = engine.getLocalRepository("Robots.RandomOutputRobot*,Robots.RandomOutputRobot*");
+         RobotSpecification[] selectedRobots = engine.getLocalRepository("Robots.RandomPatternRobot*,Robots.RandomPatternRobot*,Robots.RandomPatternRobot*");
          
          System.out.println(RobocodeEngine.getRobotsDir());
          
@@ -54,6 +58,4 @@ import robocode.control.events.*;
          // Make sure that the Java VM is shut down properly
          System.exit(0);
      }
- }
- 
-
+}

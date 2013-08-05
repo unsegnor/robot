@@ -9,7 +9,11 @@ import robocode.control.events.*;
  //
  // @author Flemming N. Larsen
  //
- public class BattleRunner {
+ 
+ //
+ // Our private battle listener for handling the battle event we are interested in.
+ //
+ public class RandomOutputBattle {
  
      public static void main(String[] args) {
  
@@ -31,7 +35,7 @@ import robocode.control.events.*;
  
          int numberOfRounds = 1;
          BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); // 800x600
-         RobotSpecification[] selectedRobots = engine.getLocalRepository("Robots.RandomOutputRobot*,Robots.RandomOutputRobot*");
+         RobotSpecification[] selectedRobots = engine.getLocalRepository("Robots.RandomOutputRobot*,Robots.RandomOutputRobot*,Robots.RandomOutputRobot*");
          
          System.out.println(RobocodeEngine.getRobotsDir());
          
@@ -55,5 +59,4 @@ import robocode.control.events.*;
          System.exit(0);
      }
  }
- 
 

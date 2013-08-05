@@ -30,9 +30,9 @@ import robocode.WinEvent;
 public class RobInterfaz extends Robot {
 
     RobotInput ri = new RobotInput();
-    
-    //RobotOutput ro = new RobotOutput();
+    private boolean leidos = false;
 
+    //RobotOutput ro = new RobotOutput();
     @Override
     public void onBulletHit(BulletHitEvent event) {
         ri.setOnbullethit(true);
@@ -110,36 +110,61 @@ public class RobInterfaz extends Robot {
         ri.getOs_event().copy(e);
     }
 
-    
-    public RobotInput getInput(){
+    public RobotInput getInput() {
+
+        //Leer los que sólo se leen una vez
+        if (!leidos) {
+            ri.setBattleFieldHeight(getBattleFieldHeight());
+            ri.setBattleFieldWidth(getBattleFieldWidth());
+            ri.setGunCoolingRate(getGunCoolingRate());
+            ri.setHeight(getHeight());
+            ri.setWidth(getWidth());
+
+            leidos = true;
+        }
+
         //Leer el estado de todas las variables del entorno ahora y devolve junto con las que se han actualizado con los 
         //eventos
-        ri.setBattleFieldHeight(getBattleFieldHeight());
-        ri.setBattleFieldWidth(getBattleFieldWidth());
-        ri.setEnergy(getEnergy());
-        ri.setGunCoolingRate(getGunCoolingRate());
-        ri.setGunHeading(getGunHeading());
-        ri.setGunHeat(getGunHeat());
-        ri.setHeading(getHeading());
-        ri.setHeight(getHeight());
-        ri.setNumRounds(getNumRounds());
-        ri.setOthers(getOthers());
-        ri.setRadarHeading(getRadarHeading());
-        ri.setRoundNum(getRoundNum());
-        ri.setTime(getTime());
-        ri.setVelocity(getVelocity());
-        ri.setWidth(getWidth());
-        ri.setX(getX());
-        ri.setY(getY());
-        
+
+        if (ri.isOnstatus()) {
+            InStatusEvent in = ri.getOs_event();
+
+            ri.setEnergy(in.getEnergy());
+            ri.setGunHeading(in.getGunHeading());
+            ri.setGunHeat(in.getGunHeat());
+            ri.setHeading(in.getHeading());
+            ri.setNumRounds(in.getNumRounds());
+            ri.setOthers(in.getOthers());
+            ri.setRadarHeading(in.getRadarHeading());
+            ri.setRoundNum(in.getRoundNum());
+            ri.setTime(in.getTime());
+            ri.setVelocity(in.getVelocity());
+            ri.setX(in.getX());
+            ri.setY(in.getY());
+        } else {
+
+            ri.setEnergy(getEnergy());
+            ri.setGunHeading(getGunHeading());
+            ri.setGunHeat(getGunHeat());
+            ri.setHeading(getHeading());
+            ri.setNumRounds(getNumRounds());
+            ri.setOthers(getOthers());
+            ri.setRadarHeading(getRadarHeading());
+            ri.setRoundNum(getRoundNum());
+            ri.setTime(getTime());
+            ri.setVelocity(getVelocity());
+            ri.setX(getX());
+            ri.setY(getY());
+        }
+
         return ri;
     }
-    
-    public void reiniciar_input(){
+
+    public void reiniciar_input() {
         //Reiniciar las variables del input
         ri.reiniciar();
+        leidos = false;
     }
-    
 
     public void setOutput(RobotOutput robotOutput) {
         //ro.copy(robotOutput);
@@ -147,54 +172,67 @@ public class RobInterfaz extends Robot {
 
     @Override
     public void run() {
-        
-        while(true){
-        
-        //Obtener entradas
-        RobotInput input = this.getInput();
-        //Calcular salidas
-        RobotOutput output = this.responder(input);
-        
-        //Actuar según las salidas
-        if(output.isAhead()) 
-            ahead(output.getV_ahead());
-        if(output.isBack()) 
-            back(output.getV_back());
-        if(output.isFire()) 
-            fire(output.getV_fire());
-        if(output.isFireBullet()) 
-            fireBullet(output.getV_firebullet());
-        if(output.isScan())
-            scan();
-        if(output.isAdjustgunforrobot())
-            setAdjustGunForRobotTurn(output.isV_adjustgunforrobot());
-        if(output.isAdjustradarforgun())
-            setAdjustRadarForGunTurn(output.isV_adjustradarforgun());
-        if(output.isAdjustradarforrobot())
-            setAdjustRadarForRobotTurn(output.isV_adjustradarforrobot());
-        if(output.isStop())
-            stop();
-        if(output.isGunleft())
-            turnGunLeft(output.getV_gunleft());
-        if(output.isGunright())
-            turnGunRight(output.getV_gunright());
-        if(output.isTurnleft())
-            turnLeft(output.getV_turnleft());
-        if(output.isTurnright())
-            turnRight(output.getV_turnright());
-        if(output.isRadarleft())
-            turnRadarLeft(output.getV_radarleft());
-        if(output.isRadarright())
-            turnRadarRight(output.getV_radarright());
-        
-        //Reiniciar las entradas
-        this.reiniciar_input();
+
+        while (true) {
+
+            //Obtener entradas
+            RobotInput input = this.getInput();
+            //Calcular salidas
+            RobotOutput output = this.responder(input);
+
+            //Actuar según las salidas
+            if (output.isAhead()) {
+                ahead(output.getV_ahead());
+            }
+            if (output.isBack()) {
+                back(output.getV_back());
+            }
+            if (output.isFire()) {
+                fire(output.getV_fire());
+            }
+            if (output.isFireBullet()) {
+                fireBullet(output.getV_firebullet());
+            }
+            if (output.isScan()) {
+                scan();
+            }
+            if (output.isAdjustgunforrobot()) {
+                setAdjustGunForRobotTurn(output.isV_adjustgunforrobot());
+            }
+            if (output.isAdjustradarforgun()) {
+                setAdjustRadarForGunTurn(output.isV_adjustradarforgun());
+            }
+            if (output.isAdjustradarforrobot()) {
+                setAdjustRadarForRobotTurn(output.isV_adjustradarforrobot());
+            }
+            if (output.isStop()) {
+                stop();
+            }
+            if (output.isGunleft()) {
+                turnGunLeft(output.getV_gunleft());
+            }
+            if (output.isGunright()) {
+                turnGunRight(output.getV_gunright());
+            }
+            if (output.isTurnleft()) {
+                turnLeft(output.getV_turnleft());
+            }
+            if (output.isTurnright()) {
+                turnRight(output.getV_turnright());
+            }
+            if (output.isRadarleft()) {
+                turnRadarLeft(output.getV_radarleft());
+            }
+            if (output.isRadarright()) {
+                turnRadarRight(output.getV_radarright());
+            }
+
+            //Reiniciar las entradas
+            this.reiniciar_input();
         }
     }
 
     public RobotOutput responder(RobotInput input) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 }
