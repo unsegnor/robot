@@ -4,8 +4,18 @@
  */
 package Utiles;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,6 +23,8 @@ import java.util.List;
  */
 public class F {
 
+    static Random r = new Random();
+    
     public static boolean[] double2bool(double valor) {
 
         boolean[] respuesta;
@@ -156,4 +168,49 @@ public class F {
     public static double q2(double valor, double max, double min) {
         return min + ((max - min) * valor);
     }
+    
+    
+    public static double aleatorio(double min, double max){
+        return min + (r.nextDouble()*(max-min));
+    }
+    
+     /*
+     * Guardar archivo con el nombre "nombre" y contenido "contenido"
+     */
+    public static void guardarArchivo(String nombre, String contenido) {
+        BufferedWriter bw = null;
+        try {
+            File archivo = new File(nombre);
+            bw = new BufferedWriter(new FileWriter(archivo));
+
+            bw.write(contenido);
+
+            System.out.println("Generado " + nombre);
+
+        } catch (IOException ex) {
+            Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                bw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public static String cargarArchivo(String ruta){
+        String respuesta = null;
+        File archivo = new File(ruta);
+        try {
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            respuesta = br.readLine();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
+    }
+    
 }

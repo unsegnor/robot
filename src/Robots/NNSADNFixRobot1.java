@@ -4,33 +4,43 @@
  */
 package Robots;
 
+import Genetica.NNSADNF.GestorADN;
 import Genetica.NNSADNF.NNSADNFix;
 import SimpleNN.NN;
 import java.util.Random;
 
 /**
- * Robot que utiliza un patrón aleatorio para funcionar
+ *
  * @author Víctor
  */
-public class RandomNNSADNRobot extends RobotInterfazReales {
+public class NNSADNFixRobot1 extends RobotInterfazReales {
     
     NN red;
-    Random r = new Random();
+    public static int lastrobot=0;
     
-    public RandomNNSADNRobot(){
+    public NNSADNFixRobot1(){
         
         init();
         
     }
 
     private void init() {
-        int[] capas = {35,30,20,25,28};
+        int[] capas = NNSADNFix.globalCapas;
         
         //Preguntamos longitud del ADN válida para las capas que queremos
         int lADN = NNSADNFix.longADN(capas);
         
-        double[] adn = NNSADNFix.randomADN(lADN);
+        //Ordenamos al gestor que cargue las cadenas si no las tiene ya
+        if(!GestorADN.iniciado){
+            GestorADN.cargardearchivo("poblaciones");
+            GestorADN.iniciado = true;
+        }
         
+        //Obtenemos el adn
+        double[] adn = GestorADN.getADN(1);
+        //aumentamos lastrobot
+        
+        //System.out.println("ClassLoader del Robot: " + this.getClass().getClassLoader().toString() + " hijo de ");
         
         red = NNSADNFix.construyeNN(adn, capas);
     }
