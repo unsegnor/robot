@@ -240,7 +240,8 @@ public class NN implements Algoritmo {
         System.arraycopy(neuronas[ncapas - 1], 0, salidas, 0, nneuronas[ncapas - 1]);
 
 
-        //Limitamos los valores entre 0 y 1 //TODO algo más está fallando!!
+        //Limitamos los valores entre 0 y 1
+        /*
         double maxvalor = Double.MIN_VALUE;
         double minvalor = Double.MAX_VALUE;
 
@@ -256,6 +257,7 @@ public class NN implements Algoritmo {
         for (int i = 0; i < salidas.length; i++) {
             salidas[i] = F.q(salidas[i], maxvalor, minvalor);
         }
+        */
 
         return salidas;
     }

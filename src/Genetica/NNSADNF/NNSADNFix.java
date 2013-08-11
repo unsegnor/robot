@@ -15,9 +15,12 @@ import java.util.Random;
  * @author Víctor
  */
 public class NNSADNFix {
-
+    
+    double[] adn;
+    
     //Tamaño de la red
     public static int[] globalCapas = {35,30,20,25,28};
+    public static String rutaPoblacion = "PoblacionNNS";
     //umbrales
     //double[] umbrales;
     //int nneuronas;
@@ -113,7 +116,7 @@ public class NNSADNFix {
      * @param adn2
      * @return
      */
-    public double[] cruzar(double[] adn, double[] adn2) {
+    public static double[] cruzar(double[] adn, double[] adn2) {
         double[] respuesta = new double[adn.length];
 
         //Para cada par de valores cruzar
@@ -123,8 +126,17 @@ public class NNSADNFix {
 
         return respuesta;
     }
+    
+    
+        public static NNSADNFix cruzar(NNSADNFix adn, NNSADNFix adn2) {
+        NNSADNFix respuesta = new NNSADNFix();
 
-    public double cruzar(double gen, double gen2) {
+        respuesta.adn = NNSADNFix.cruzar(adn.adn, adn2.adn);
+
+        return respuesta;
+    }
+
+    public static double cruzar(double gen, double gen2) {
         //Obtener valor aleatorio uniforme dentro del rango que definen los padres más un 20% de "innovación"
         //Determinar rango (diferencia entre padres)
         double rmin = Math.min(gen, gen2);

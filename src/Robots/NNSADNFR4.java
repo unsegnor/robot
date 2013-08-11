@@ -13,12 +13,12 @@ import java.util.Random;
  *
  * @author Víctor
  */
-public class NNSADNFixRobot3 extends RobotInterfazReales {
+public class NNSADNFR4 extends RobotInterfazReales {
     
     NN red;
     public static int lastrobot=0;
     
-    public NNSADNFixRobot3(){
+    public NNSADNFR4(){
         
         init();
         
@@ -30,14 +30,12 @@ public class NNSADNFixRobot3 extends RobotInterfazReales {
         //Preguntamos longitud del ADN válida para las capas que queremos
         int lADN = NNSADNFix.longADN(capas);
         
-        //Ordenamos al gestor que cargue las cadenas si no las tiene ya
-        if(!GestorADN.iniciado){
-            GestorADN.cargardearchivo("poblaciones");
-            GestorADN.iniciado = true;
-        }
+        //Ordenamos al gestor que cargue las cadenas
+        GestorADN.cargardearchivo(NNSADNFix.rutaPoblacion);
+        
         
         //Obtenemos el adn
-        double[] adn = GestorADN.getADN(3);
+        double[] adn = GestorADN.getADN(4);
 
         
         //System.out.println("ClassLoader del Robot: " + this.getClass().getClassLoader().toString() + " hijo de ");

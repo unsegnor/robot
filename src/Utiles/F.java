@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class F {
 
     static Random r = new Random();
-    
+
     public static boolean[] double2bool(double valor) {
 
         boolean[] respuesta;
@@ -55,20 +55,19 @@ public class F {
     }
 
     //Normaliza un número real entre el máximo y el mínimo indicado
-    
-    public static double q(double valor, double max, double min){
+    public static double q(double valor, double max, double min) {
         return (valor - min) / (max - min);
     }
-    
+
     //Convierte double en boolean y viceversa
-    public static double h(boolean valor){
-        return valor?1:0;
+    public static double h(boolean valor) {
+        return valor ? 1 : 0;
     }
-    
-    public static boolean h(double valor){
-        return (valor>=0.5);
+
+    public static boolean h(double valor) {
+        return (valor >= 0.5);
     }
-    
+
     public static boolean[] double2bool(double[] valores) {
         //Preparamos el vector de bits final
         int l = valores.length; //Número de valores dobles
@@ -117,19 +116,20 @@ public class F {
         return respuesta;
     }
     //La inversa de "tobinary"
-    public static double Bool2Double(List<Boolean> b){
+
+    public static double Bool2Double(List<Boolean> b) {
         int num = 0;
-        
+
         //Recorrer e ir sumando
-        for(int i=b.size()-1; i>0; i--){
-            if(b.get(i)){
+        for (int i = b.size() - 1; i > 0; i--) {
+            if (b.get(i)) {
                 num++;
             }
             //TODO averiguar por qué se multiplica por dos el resultado final, comprobar esto
             num = num << 1; //Pase lo que pase multiplicamos por 2
         }
-        
-        return ((double)num)/100d;
+
+        return ((double) num) / 100d;
     }
 
     //Devuelve un vector de 24 bits que representa el double que se le pasa
@@ -146,8 +146,8 @@ public class F {
 
         //Añadir el último que representa el signo
         //respuesta.add(d<0);
-        
-        
+
+
         return respuesta;
     }
 
@@ -161,20 +161,39 @@ public class F {
         return sb.toString();
     }
     //Devuelve el valor de los trozos del array desde from hasta to
-    public static double s(ArrayList<Boolean> v, int from, int to){
+
+    public static double s(ArrayList<Boolean> v, int from, int to) {
         return Bool2Double(v.subList(from, to));
     }
 
+    /**
+     * Si se pasa del máximo o el mínimo hacemos que sature
+     *
+     * @param valor
+     * @param max
+     * @param min
+     * @return
+     */
     public static double q2(double valor, double max, double min) {
-        return min + ((max - min) * valor);
+        double respuesta = 0;
+
+        if (valor >= max) {
+            respuesta = max;
+        } else if (valor <= min) {
+            respuesta = min;
+        } else {
+            respuesta = min + ((max - min) * valor);
+        }
+
+
+        return respuesta;
     }
-    
-    
-    public static double aleatorio(double min, double max){
-        return min + (r.nextDouble()*(max-min));
+
+    public static double aleatorio(double min, double max) {
+        return min + (r.nextDouble() * (max - min));
     }
-    
-     /*
+
+    /*
      * Guardar archivo con el nombre "nombre" y contenido "contenido"
      */
     public static void guardarArchivo(String nombre, String contenido) {
@@ -197,8 +216,29 @@ public class F {
             }
         }
     }
-    
-    public static String cargarArchivo(String ruta){
+
+    public static void appendArchivo(String nombre, String contenido) {
+        BufferedWriter bw = null;
+        try {
+            File archivo = new File(nombre);
+            bw = new BufferedWriter(new FileWriter(archivo, true));
+
+            bw.append(contenido);
+
+            System.out.println("Generado " + nombre);
+
+        } catch (IOException ex) {
+            Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                bw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public static String cargarArchivo(String ruta) {
         String respuesta = null;
         File archivo = new File(ruta);
         try {
@@ -212,5 +252,14 @@ public class F {
         }
         return respuesta;
     }
-    
+/**
+ * Crea la carpeta si no existe
+ * @param ruta 
+ */
+    public static void crearCarpeta(String ruta) {
+        File archivo = new File(ruta);
+        if(!archivo.exists()){
+            archivo.mkdir();
+        }
+    }
 }

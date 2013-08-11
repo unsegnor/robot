@@ -86,7 +86,7 @@ public class GestorADN {
         //Dividir por cadenas de adn
         String[] adns = cadena.split(":");
         //Convertir cadenas a adns y añadir al vector de cadenas
-        for(int i=0; i<adns.length; i++){
+        for(int i=1; i<adns.length; i++){ //Nos saltamos el primero porque la cadena empieza con ":" y está vacío
             addPop(NNSADNFix.s2adn(adns[i]));
         }
     }

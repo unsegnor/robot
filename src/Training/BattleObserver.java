@@ -16,7 +16,7 @@ import robocode.control.events.BattleMessageEvent;
  //
  // Our private battle listener for handling the battle event we are interested in.
  //
- class BattleObserver extends BattleAdaptor {
+ public class BattleObserver extends BattleAdaptor {
  
      // Called when the battle is completed successfully with battle results
      public void onBattleCompleted(BattleCompletedEvent e) {

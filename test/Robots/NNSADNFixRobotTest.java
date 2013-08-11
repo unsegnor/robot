@@ -37,13 +37,13 @@ public class NNSADNFixRobotTest {
     }
 
     /**
-     * Test of responder method, of class NNSADNFixRobot1.
+     * Test of responder method, of class NNSADNFR1.
      */
     @Test
     public void testResponder() {
         System.out.println("responder");
         double[] entradas = null;
-        NNSADNFixRobot1 instance = new NNSADNFixRobot1();
+        NNSADNFR1 instance = new NNSADNFR1();
         double[] expResult = null;
         double[] result = instance.responder(entradas);
         //assertArrayEquals(expResult, result);
