@@ -38,6 +38,7 @@ public class NNSFADNEvoBattle10 extends BattleAdaptor {
             ResultadosNNS resultados = evo.getResultados();
             PoblacionNNS mejores = evo.seleccionarMejores(poblacion, resultados);
             PoblacionNNS descendientes = evo.cruzar(mejores, 3); //Generamos 3 nuevos descendientes
+            PoblacionNNS mutados = evo.mutar(descendientes);
             poblacion = evo.sustituirPoblacion(poblacion, resultados, descendientes);
             evo.grabarResultados(id_ejecucion, resultados);
         }

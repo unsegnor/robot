@@ -80,16 +80,18 @@ public class NNSEvoManager {
         int numberOfRounds = 1;
         BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); // 800x600
         RobotSpecification[] selectedRobots = engine.getLocalRepository(
-                "Robots.NNSADNFR0*,"
-                + "Robots.NNSADNFR1*,"
-                + "Robots.NNSADNFR2*,"
-                + "Robots.NNSADNFR3*,"
-                + "Robots.NNSADNFR4*,"
-                + "Robots.NNSADNFR5*,"
-                + "Robots.NNSADNFR6*,"
-                + "Robots.NNSADNFR7*,"
-                + "Robots.NNSADNFR8*,"
-                + "Robots.NNSADNFR9*");
+                "Robots.NNSADNFR0*"
+                + "," + "Robots.NNSADNFR1*"
+                + "," + "Robots.NNSADNFR2*"
+                + "," + "Robots.NNSADNFR3*"
+                + "," + "Robots.NNSADNFR4*"
+                + "," + "Robots.NNSADNFR5*"
+                + "," + "Robots.NNSADNFR6*"
+                + "," + "Robots.NNSADNFR7*"
+                + "," + "Robots.NNSADNFR8*"
+                + "," + "Robots.NNSADNFR9*"
+                //+ "," + "sample.SpinBot"
+                );
 
         BattleSpecification battleSpec = new BattleSpecification(numberOfRounds, battlefield, selectedRobots);
 
@@ -184,7 +186,18 @@ public class NNSEvoManager {
             asustituir--;
         }
 
-
+        int naleatorios = 1;
+        
+        //Introducimos un individuo aleatorio
+        for(int i=0; i<naleatorios; i++){
+            //Obtenemos la posición del peor sin sustituir
+            int posicion_del_peor_no_sustituido = resultados.orden[asustituir];
+            //Sustituimos el adn del individuo
+            int longitud = respuesta.individuos.get(posicion_del_peor_no_sustituido).adn.adn.length;
+            respuesta.individuos.get(posicion_del_peor_no_sustituido).adn.adn = NNSADNFix.randomADN(longitud);
+            //Ahora vamos a por el siguiente peor
+            asustituir--;
+        }
 
 
         return respuesta;
@@ -205,8 +218,8 @@ public class NNSEvoManager {
 
     public void guardarGeneracion(String id_ejecucion, int generacion, PoblacionNNS poblacion) {
         
-        F.crearCarpeta(id_ejecucion);
-        F.guardarArchivo(id_ejecucion + "/" + id_ejecucion + "-g" + generacion, poblacion.toString());
+        F.crearCarpeta("resultados/" + id_ejecucion);
+        F.guardarArchivo("resultados/" + id_ejecucion + "/" + id_ejecucion + "-g" + generacion, poblacion.toString());
     }
 
     public void grabarResultados(String id_ejecucion, ResultadosNNS resultados) {
@@ -220,7 +233,13 @@ public class NNSEvoManager {
         
         sb.append("\n");
         
-        F.crearCarpeta(id_ejecucion);
-        F.appendArchivo(id_ejecucion + "/" + id_ejecucion + "-resultados", sb.toString());
+        F.crearCarpeta("resultados/" + id_ejecucion);
+        F.appendArchivo("resultados/" + id_ejecucion + "/" + id_ejecucion + "-resultados", sb.toString());
+    }
+
+    public PoblacionNNS mutar(PoblacionNNS poblacion) {
+        //Cambiamos de cada individuo algún valor al azar
+        return poblacion;
+        
     }
 }

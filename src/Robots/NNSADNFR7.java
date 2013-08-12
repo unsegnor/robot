@@ -4,46 +4,13 @@
  */
 package Robots;
 
-import Genetica.NNSADNF.GestorADN;
-import Genetica.NNSADNF.NNSADNFix;
-import SimpleNN.NN;
-import java.util.Random;
-
 /**
  *
  * @author Víctor
  */
-public class NNSADNFR7 extends RobotInterfazReales {
-    
-    NN red;
-    public static int lastrobot=0;
-    
-    public NNSADNFR7(){
-        
-        init();
-        
-    }
+public class NNSADNFR7 extends NNSADNFR {
 
-    private void init() {
-        int[] capas = NNSADNFix.globalCapas;
-        
-        //Preguntamos longitud del ADN válida para las capas que queremos
-        int lADN = NNSADNFix.longADN(capas);
-        
-        //Ordenamos al gestor que cargue las cadenas
-        GestorADN.cargardearchivo(NNSADNFix.rutaPoblacion);
-        
-        //Obtenemos el adn
-        double[] adn = GestorADN.getADN(7);
-
-        
-        //System.out.println("ClassLoader del Robot: " + this.getClass().getClassLoader().toString() + " hijo de ");
-        
-        red = NNSADNFix.construyeNN(adn, capas);
+    public NNSADNFR7() {
+        super(7);
     }
-    
-    public double[] responder(double[] entradas){
-        return red.exec(entradas);
-    }
-    
 }

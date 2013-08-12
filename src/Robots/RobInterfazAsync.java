@@ -6,6 +6,7 @@ package Robots;
 
 import Utiles.F;
 import java.util.ArrayList;
+import robocode.AdvancedRobot;
 import robocode.BattleEndedEvent;
 import robocode.Bullet;
 import robocode.BulletHitBulletEvent;
@@ -27,7 +28,7 @@ import robocode.WinEvent;
  *
  * @author Victor
  */
-public class RobInterfaz extends Robot {
+public class RobInterfazAsync extends AdvancedRobot {
 
     RobotInput ri = new RobotInput();
     private boolean leidos = false;
@@ -174,29 +175,31 @@ public class RobInterfaz extends Robot {
     public void run() {
 
         while (true) {
-            
+
+            //Reiniciar las entradas
+            this.reiniciar_input();
+
             //Obtener entradas
             RobotInput input = this.getInput();
             //Calcular salidas
             RobotOutput output = this.responder(input);
-
             
-            //Actuar según las salidas
+            //Preparar acciones
             if (output.isAhead()) {
-                ahead(output.getV_ahead());
+                setAhead(output.getV_ahead());
             }
             if (output.isBack()) {
-                back(output.getV_back());
+                setBack(output.getV_back());
             }
             if (output.isFire()) {
-                fire(output.getV_fire());
+                setFire(output.getV_fire());
             }
             if (output.isFireBullet()) {
-                fireBullet(output.getV_firebullet());
+                setFireBullet(output.getV_firebullet());
             }
-            if (output.isScan()) {
-                scan();
-            }
+//            if (output.isScan()) {
+//                scan();
+//            }
             if (output.isAdjustgunforrobot()) {
                 setAdjustGunForRobotTurn(output.isV_adjustgunforrobot());
             }
@@ -206,30 +209,34 @@ public class RobInterfaz extends Robot {
             if (output.isAdjustradarforrobot()) {
                 setAdjustRadarForRobotTurn(output.isV_adjustradarforrobot());
             }
-            if (output.isStop()) {
-                stop();
-            }
+//            if (output.isStop()) {
+//                stop();
+//            }
             if (output.isGunleft()) {
-                turnGunLeft(output.getV_gunleft());
+                setTurnGunLeft(output.getV_gunleft());
             }
             if (output.isGunright()) {
-                turnGunRight(output.getV_gunright());
+                setTurnGunRight(output.getV_gunright());
             }
             if (output.isTurnleft()) {
-                turnLeft(output.getV_turnleft());
+                setTurnLeft(output.getV_turnleft());
             }
             if (output.isTurnright()) {
-                turnRight(output.getV_turnright());
+                setTurnRight(output.getV_turnright());
             }
             if (output.isRadarleft()) {
-                turnRadarLeft(output.getV_radarleft());
+                setTurnRadarLeft(output.getV_radarleft());
             }
             if (output.isRadarright()) {
-                turnRadarRight(output.getV_radarright());
+                setTurnRadarRight(output.getV_radarright());
             }
 
-            //Reiniciar las entradas
-            this.reiniciar_input();
+            //Deja de hacer lo que estuvieras haciendo
+            //stop(true);
+            
+            //Ejecutar las salidas
+            execute();
+
         }
     }
 

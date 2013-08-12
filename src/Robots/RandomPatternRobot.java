@@ -5,6 +5,7 @@
 package Robots;
 
 import SimpleNN.NN;
+import SimpleNN.NNModOutput;
 
 /**
  * Robot que utiliza un patrón aleatorio para funcionar
@@ -12,7 +13,7 @@ import SimpleNN.NN;
  */
 public class RandomPatternRobot extends RobotInterfazReales {
     
-    NN red;
+    NNModOutput red;
     
     public RandomPatternRobot(){
         
@@ -23,7 +24,7 @@ public class RandomPatternRobot extends RobotInterfazReales {
     private void init() {
         int[] capas = {35,30,20,10,20,30,35};
         
-        red = new NN(capas);
+        red = new NNModOutput(capas);
     }
     
     public double[] responder(double[] entradas){

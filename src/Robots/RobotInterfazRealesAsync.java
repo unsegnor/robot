@@ -11,7 +11,7 @@ import robocode.Rules;
  * Esta interfaz convierte todas las entradas en un vector de valores reales
  * @author Víctor
  */
-public class RobotInterfazReales extends RobInterfazAsync{
+public class RobotInterfazRealesAsync extends RobInterfazAsync{
     
     @Override
     public RobotOutput responder (RobotInput input){

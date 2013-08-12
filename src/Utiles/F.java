@@ -175,14 +175,13 @@ public class F {
      * @return
      */
     public static double q2(double valor, double max, double min) {
-        double respuesta = 0;
+        //double respuesta = min + ((max - min) * valor);
+        double respuesta = valor;
 
         if (valor >= max) {
             respuesta = max;
         } else if (valor <= min) {
             respuesta = min;
-        } else {
-            respuesta = min + ((max - min) * valor);
         }
 
 
