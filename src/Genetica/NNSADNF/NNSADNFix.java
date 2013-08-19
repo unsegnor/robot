@@ -15,6 +15,17 @@ import java.util.Random;
  * @author Víctor
  */
 public class NNSADNFix {
+
+    static void mutar(NNSADNFix adn) {
+        //Para cada valor existe una posibilidad del 20% de sufrir una mutación
+        for(int i=0; i<adn.adn.length; i++){
+            double p = r.nextDouble();
+            if(p<=0.2){
+                //La mutación consiste en sustituir el valor por otro aleatorio
+                adn.adn[i] = r.nextDouble();
+            }
+        }
+    }
     
     double[] adn;
     
@@ -100,7 +111,7 @@ public class NNSADNFix {
         double[] estados = Arrays.copyOfRange(adn, nneuronas, nneuronas + nneuronas);
         double[] pesos = Arrays.copyOfRange(adn, nneuronas + nneuronas, nneuronas + nneuronas + nconexiones);
 
-        System.out.println(nneuronas + "*2 + " + nconexiones + " = " + (nneuronas * 2 + nconexiones));
+        //System.out.println(nneuronas + "*2 + " + nconexiones + " = " + (nneuronas * 2 + nconexiones));
 
         respuesta = new NN(capas, umbrales, estados, pesos);
 

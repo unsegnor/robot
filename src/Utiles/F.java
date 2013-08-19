@@ -240,14 +240,21 @@ public class F {
     public static String cargarArchivo(String ruta) {
         String respuesta = null;
         File archivo = new File(ruta);
+        BufferedReader br = null;
         try {
             FileReader fr = new FileReader(archivo);
-            BufferedReader br = new BufferedReader(fr);
+            br = new BufferedReader(fr);
             respuesta = br.readLine();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return respuesta;
     }
@@ -260,5 +267,31 @@ public class F {
         if(!archivo.exists()){
             archivo.mkdir();
         }
+    }
+
+    public static String cargarArchivoEntero(String ruta) {
+        StringBuilder respuesta = new StringBuilder();
+        File archivo = new File(ruta);
+        BufferedReader br = null;
+        try {
+            FileReader fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            String linea = br.readLine();
+            while (linea != null){
+                respuesta.append(linea).append("\n");
+                linea = br.readLine();
+        }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(F.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return respuesta.toString();
     }
 }

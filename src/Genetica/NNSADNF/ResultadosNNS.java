@@ -10,7 +10,7 @@ package Genetica.NNSADNF;
  */
 public class ResultadosNNS {
     
-    double[] resultados;
-    int[] orden;
+    public double[] resultados;
+    public int[] orden;
     
 }

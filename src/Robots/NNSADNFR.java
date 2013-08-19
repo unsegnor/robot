@@ -15,11 +15,13 @@ import java.util.Random;
  * @author Víctor
  */
 public class NNSADNFR extends RobotInterfazReales {
+    public static String prefijo = "Robots.NNSADNFR";
     
     NN red;
     boolean coloreado = false;
     double[] adn;
     Color color;
+    
     
     public NNSADNFR(int n){
         

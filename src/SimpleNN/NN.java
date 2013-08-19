@@ -18,6 +18,7 @@ public class NN implements Algoritmo {
     Random r = new Random();
     private double[][][] pesos; //pesos[A][B][C] Almacenará el peso de la conexión entre la neurona B de la capa A y la neurona C de la capa anterior
     double[][] neuronas;// neuronas[capa][neurona]
+    double[][] tipo_neuronas;
     private int nsalidas;
     private int nentradas;
     private int[] nneuronas;
@@ -63,6 +64,7 @@ public class NN implements Algoritmo {
 
         //Creamos las neuronas
         neuronas = new double[ncapas][maxnneuronas];
+        tipo_neuronas = new double[ncapas][maxnneuronas];
 
         //Inicializamos las neuronas según el vector de estados
         int k = 0;
@@ -75,6 +77,7 @@ public class NN implements Algoritmo {
                     valor = 0;
                 }
                 neuronas[i][j] = valor;
+                tipo_neuronas[i][j] = valor;
                 k++;
             }
         }
@@ -225,8 +228,12 @@ public class NN implements Algoritmo {
 
                     //Si la conexión está activa entonces comprobamos su peso
                     if (neuronas[c - 1][i] >= getUmbral()[c - 1][i]) {
-                        //Sumamos el peso de la conexión al valor de la neurona
-                        neuronas[c][n] += getPesos()[c][n][i];
+                        //Sumamos o restamos el peso de la conexión al valor de la neurona
+                        if (tipo_neuronas[c][n] >= 0.5) {
+                            neuronas[c][n] += getPesos()[c][n][i];
+                        } else {
+                            neuronas[c][n] -= getPesos()[c][n][i];
+                        }
                     }
 
                 }
@@ -242,22 +249,22 @@ public class NN implements Algoritmo {
 
         //Limitamos los valores entre 0 y 1
         /*
-        double maxvalor = Double.MIN_VALUE;
-        double minvalor = Double.MAX_VALUE;
+         double maxvalor = Double.MIN_VALUE;
+         double minvalor = Double.MAX_VALUE;
 
-        for (int i = 0; i < salidas.length; i++) {
-            if (salidas[i] > maxvalor) {
-                maxvalor = salidas[i];
-            }
-            if (salidas[i] < minvalor) {
-                minvalor = salidas[i];
-            }
-        }
+         for (int i = 0; i < salidas.length; i++) {
+         if (salidas[i] > maxvalor) {
+         maxvalor = salidas[i];
+         }
+         if (salidas[i] < minvalor) {
+         minvalor = salidas[i];
+         }
+         }
 
-        for (int i = 0; i < salidas.length; i++) {
-            salidas[i] = F.q(salidas[i], maxvalor, minvalor);
-        }
-        */
+         for (int i = 0; i < salidas.length; i++) {
+         salidas[i] = F.q(salidas[i], maxvalor, minvalor);
+         }
+         */
 
         return salidas;
     }

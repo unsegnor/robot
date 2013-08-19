@@ -8,8 +8,12 @@ package Genetica.NNSADNF;
  * Tiene ADN
  * @author Víctor
  */
-class IndividuoNNS {
+public class IndividuoNNS {
     
     NNSADNFix adn;
+    
+    public double ultimo_resultado;
+    
+    public boolean calculado=false;
     
 }
