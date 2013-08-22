@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Training;
+package MemProc;
 
 import Genetica.NNSADNF.NNSEvoManager;
 import Robots.NNSADNFR;
@@ -10,18 +10,26 @@ import robocode.control.events.BattleAdaptor;
 import robocode.control.events.BattleCompletedEvent;
 
 /**
- *
+ * Controlador de Batalla para MP
  * @author Víctor
  */
-public class ControladorDeBatalla extends BattleAdaptor {
+public class MPCB extends BattleAdaptor{
+    
+    AnotadorDeResultados anotador;
+    String prefijo;
 
-    NNSEvoManager evo;
-
-    public ControladorDeBatalla(NNSEvoManager evomanager) {
-        this.evo = evomanager;
+    /**
+     * El prefijo es el que se utilizará para reconocer los nombres de los robots cuyos resultados debemos anotar
+     * @param anotador
+     * @param prefijo 
+     */
+    public MPCB(AnotadorDeResultados anotador, String prefijo) {
+        this.anotador = anotador;
+        this.prefijo = prefijo;
     }
 
     //Cuando la batalla termina 
+    @Override
     public void onBattleCompleted(BattleCompletedEvent e) {
 
         //Aquí tenemos los resultados de la última batalla, los valores de fitness calculados
@@ -38,9 +46,9 @@ public class ControladorDeBatalla extends BattleAdaptor {
             String cadena = result.getTeamLeaderName();
 
             //Si no es de los nuestros no lo anotamos
-            if (cadena.contains(NNSADNFR.prefijo)) {
+            if (cadena.contains(prefijo)) {
 
-                int id_robot = Integer.parseInt(cadena.substring((NNSADNFR.prefijo.length()), cadena.length() - 1));
+                int id_robot = Integer.parseInt(cadena.substring((prefijo.length()), cadena.length() - 1));
 
                 //Almacenamos el resultado del robot
                 resultados[id_robot] = result.getScore();
@@ -52,7 +60,12 @@ public class ControladorDeBatalla extends BattleAdaptor {
             }
         }
 
-        //Ahora pasamos los resultados al EvoManager que decidirá a quién cruzar con quien y todo eso
-        evo.anotarResultados(resultados, resultadosOrdenados);
+        //Generamos resultados de batalla
+        ResultadosBatalla rb = new ResultadosBatalla();
+        rb.orden = resultadosOrdenados;
+        rb.resultados = resultados;
+        
+        //Ahora pasamos los resultados al anotador 
+        anotador.anotarResultados(rb);
     }
 }

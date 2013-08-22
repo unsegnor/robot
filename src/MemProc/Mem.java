@@ -13,9 +13,12 @@ package MemProc;
  */
 public class Mem {
 
-    double valor = 0;
-    double valorSiguiente = valor;
+    double max = 1;
+    double min = 0;
+    private double valor = 0;
+    double valorSiguiente = getValor();
 
+    
     public Mem() {
     }
 
@@ -25,51 +28,62 @@ public class Mem {
     }
 
     public double get() {
-        return valor;
+        return getValor();
     }
 
     public void add(double v) {
         valorSiguiente += v;
     }
 
-    private void init(double v) {
-        valor = v;
-        valorSiguiente = valor;
+    public void sub(double v) {
+        valorSiguiente -= v;
+    }
+
+    public void set(double v) {
+        valorSiguiente = v;
+    }
+    
+        private void init(double v) {
+        setValor(v);
+        valorSiguiente = getValor();
+    }
+
+    private void init(double posicion, double v) {
+        setValor(v);
+        valorSiguiente = getValor();
     }
 
     /**
-     * Actualiza el valor de la Memoria
+     * Actualiza el valor de la Memoria, sesgamos entre max y min
      */
     public void actualizar() {
-        valor = valorSiguiente;
+        if (valorSiguiente >= max) {
+            setValor(max);
+        } else if (valorSiguiente <= min) {
+            setValor(min);
+        } else {
+            setValor(valorSiguiente);
+        }
     }
 
-    //Devuelve un getEntradas de mems nuevos inicializados con los valores del vector de entrada
-    static Mem[] array(double[] valores) {
-        int nvalores = valores.length;
-        Mem[] respuesta = new Mem[nvalores];
-
-        for (int i = 0; i < nvalores; i++) {
-            respuesta[i] = new Mem(valores[i]);
-        }
-
-        return respuesta;
+    @Override
+    public String toString(){
+        return Double.toString(getValor());
     }
 
     /**
-     * Devuelve <n> Mems inicializados a 0
-     *
-     * @param n
-     * @return
+     * @return the valor
      */
-    static Mem[] array(int n) {
-        Mem[] respuesta = new Mem[n];
-
-        for (int i = 0; i < n; i++) {
-
-            respuesta[i] = new Mem();
-        }
-
-        return respuesta;
+    public double getValor() {
+        return valor;
     }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+            
+    
 }

@@ -187,6 +187,19 @@ public class F {
 
         return respuesta;
     }
+    
+        public static double q201(double valor, double max, double min) {
+        double respuesta = min + ((max - min) * valor);
+
+        if (valor >= max) {
+            respuesta = max;
+        } else if (valor <= min) {
+            respuesta = min;
+        }
+
+
+        return respuesta;
+    }
 
     public static double aleatorio(double min, double max) {
         return min + (r.nextDouble() * (max - min));

@@ -11,7 +11,7 @@ import robocode.Rules;
  * Esta interfaz convierte todas las entradas en un vector de valores reales
  * @author Víctor
  */
-public class RobotInterfazReales extends RobInterfazAsync{
+public class RobotInterfazReales01 extends RobInterfazAsync{
     
     public static final int nentradas = 35;
     public static final int nsalidas = 28;
@@ -91,16 +91,16 @@ public class RobotInterfazReales extends RobInterfazAsync{
         out.setV_adjustgunforrobot(F.h(s[15]));
         out.setV_adjustradarforgun(F.h(s[16]));
         out.setV_adjustradarforrobot(F.h(s[17]));
-        out.setV_ahead(F.q2(s[18], 5000, -5000));
-        out.setV_back(F.q2(s[19], 5000, -5000));
-        out.setV_fire(F.q2(s[20], Rules.MAX_BULLET_POWER, Rules.MIN_BULLET_POWER));
-        out.setV_firebullet(F.q2(s[21], Rules.MAX_BULLET_POWER, Rules.MIN_BULLET_POWER));
-        out.setV_gunleft(F.q2(s[22], 180, -180));
-        out.setV_gunright(F.q2(s[23], 180, -180));
-        out.setV_radarleft(F.q2(s[24], 180, -180));
-        out.setV_radarright(F.q2(s[25], 180, -180));
-        out.setV_turnleft(F.q2(s[26], 180, -180));
-        out.setV_turnright(F.q2(s[27], 180, -180));
+        out.setV_ahead(F.q201(s[18], 5000, -5000));
+        out.setV_back(F.q201(s[19], 5000, -5000));
+        out.setV_fire(F.q201(s[20], Rules.MAX_BULLET_POWER, Rules.MIN_BULLET_POWER));
+        out.setV_firebullet(F.q201(s[21], Rules.MAX_BULLET_POWER, Rules.MIN_BULLET_POWER));
+        out.setV_gunleft(F.q201(s[22], 180, -180));
+        out.setV_gunright(F.q201(s[23], 180, -180));
+        out.setV_radarleft(F.q201(s[24], 180, -180));
+        out.setV_radarright(F.q201(s[25], 180, -180));
+        out.setV_turnleft(F.q201(s[26], 180, -180));
+        out.setV_turnright(F.q201(s[27], 180, -180));
         
         
         

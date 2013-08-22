@@ -4,46 +4,59 @@
  */
 package MemProc;
 
-import MemProc.Proc.tipoProc;
+import static MemProc.TestMemProcNet.imprime;
 
 /**
  *
  * @author Víctor
  */
-public class TestMemProcNet {
+public class MemProcNetNeuron {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
         //Determinar entradas y salidas
 
-        Mem[] entrada = Utiles.getMemArray(3);
+        Mem[] entrada = Utiles.getMemArray(4);
+        
+        entrada[1].setValor(1);
 
-        Mem[] salida = Utiles.getMemArray(3);
+        Mem[] salidas = Utiles.getMemArray(1);
+        
+        Mem salida = salidas[0];
 
-        Mem umbral = new Mem(0.2);
+        Mem umbral = new Mem(0.5);
+        
+        Mem  min = entrada[0];
+                
+        Mem max =entrada[1];
+        
+        Mem pesoA = new Mem(0.3);
+        
+        Mem pesoB = new Mem(0.5);
 
+        Mem carga = new Mem(0);
+        
         //Generar procs
-        Proc p1 = new Proc(tipoProc.SUM, entrada[0], entrada[1], salida[0], umbral);
-        Proc p2 = new Proc(tipoProc.SUM, entrada[1], entrada[2], salida[1], umbral);
-        Proc p3 = new Proc(tipoProc.SUM, entrada[2], entrada[2], salida[2], umbral);
-        Proc p4 = new Proc(tipoProc.SUM, entrada[2], entrada[1], entrada[0], umbral);
+        Proc p1 = new Proc(Proc.tipoProc.SUM, pesoA, carga, entrada[2], min);
+        Proc p2 = new Proc(Proc.tipoProc.SUM, pesoB, carga, entrada[3], min);
+        Proc p3 = new Proc(Proc.tipoProc.SET, max, salida, carga, umbral);
+        //Proc p4 = new Proc(Proc.tipoProc.SUM, entrada[2], entrada[1], entrada[0], umbral);
 
         //Crear red
         MemProcNet red = new MemProcNet();
         red.add(p1);
         red.add(p2);
         red.add(p3);
-        red.add(p4);
+        //red.add(p4);
 
         //Imprimir entradas y salidas
         System.out.print(" Entrada ");
         System.out.print(imprime(entrada));
 
         System.out.print(" Salida ");
-        System.out.println(imprime(salida));
+        System.out.println(imprime(salidas));
 
         for (int i = 0; i < 10; i++) {
 
@@ -55,7 +68,7 @@ public class TestMemProcNet {
             System.out.print(imprime(entrada));
 
             System.out.print(" Salida ");
-            System.out.println(imprime(salida));
+            System.out.println(imprime(salidas));
         }
 
         System.out.println(red.toDOT());

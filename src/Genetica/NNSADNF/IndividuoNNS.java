@@ -4,16 +4,17 @@
  */
 package Genetica.NNSADNF;
 
+import General.Individuo;
+
 /**
  * Tiene ADN
  * @author Víctor
  */
-public class IndividuoNNS {
+public class IndividuoNNS{
     
     NNSADNFix adn;
     
-    public double ultimo_resultado;
-    
-    public boolean calculado=false;
+    public boolean calculado = false;
+    public double ultimo_resultado = 0;
     
 }
