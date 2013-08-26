@@ -19,8 +19,8 @@ public class MostrarGeneracion {
      */
     public static void main(String[] args) {
         
-        String id_ejecucion = "17082013133655";
-        int generacion = 1482;
+        String id_ejecucion = "26082013024424";
+        int generacion = 15;
         int nrounds = 10;
         int enemigo = 1;
         

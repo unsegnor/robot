@@ -36,7 +36,7 @@ public class NNSFADNEvoBattle10 extends BattleAdaptor {
         for (int i = 0; i < 2000; i++) {
             if (i>100) visible = true;
             evo.guardarGeneracion(id_ejecucion,i,poblacion);
-            evo.lanzarBatalla(poblacion,visible,nrounds,1); //Espera a que termine
+            evo.lanzarBatalla(poblacion,visible,nrounds,0); //Espera a que termine
             
             ResultadosNNS resultados = evo.getResultados();
             PoblacionNNS mejores = evo.seleccionarMejores(poblacion, resultados);

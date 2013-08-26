@@ -17,7 +17,7 @@ import java.util.Date;
  *
  * @author Víctor
  */
-public class MPEvoSoloBattleEspeciacion {
+public class ContinuarMPEvoSoloBattleEspeciacion {
 
     /**
      * @param args the command line arguments
@@ -34,6 +34,7 @@ public class MPEvoSoloBattleEspeciacion {
         params.setNumero_de_individuos(100);
         params.setNumero_de_progenitores(2);
         params.setProbabilidad_de_mutacion(0.01);
+        params.setSaveResult(false);
 
         params.setSolucion(MemProcADN.aleatorio(300));
         params.setDebug(false);
@@ -52,17 +53,13 @@ public class MPEvoSoloBattleEspeciacion {
 
         evo.setBC(bc);
 
-        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-        Date hoy = new Date();
-        String id_ejecucion = dateFormat.format(hoy);
+        String id_ejecucion = "25082013235042";
+        int generacion = 8991;
 
-        //Guardar los parámetros que hemos usado
-        evo.guardarParams(id_ejecucion, params);
-        
         //Generar población inicial
-        PoblacionMP poblacion = evo.generarPoblacion(params.getNumero_de_individuos(), params.getLongitud_solucion_inicial());
+        PoblacionMP poblacion = evo.cargarGeneracion(id_ejecucion, generacion, true);
 
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        for (int i = generacion+1; i < Integer.MAX_VALUE; i++) {
 
             evo.competicionDirectaCercana(poblacion, params, state);
 

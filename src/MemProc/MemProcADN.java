@@ -4,6 +4,7 @@
  */
 package MemProc;
 
+import General.ADN;
 import Training.MPEvoParams;
 import Utiles.F;
 import java.util.Random;
@@ -13,7 +14,7 @@ import java.util.Random;
  *
  * @author Víctor
  */
-public class MemProcADN {
+public class MemProcADN extends ADN {
 
     static Random r = new Random();
     private static int maxdiff = 10; //Diferencia máxima de longitud de adn
@@ -239,10 +240,13 @@ public class MemProcADN {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(valores[0]);
+        if (valores.length > 0) {
 
-        for (int i = 1; i < valores.length; i++) {
-            sb.append(";").append(valores[i]);
+            sb.append(valores[0]);
+
+            for (int i = 1; i < valores.length; i++) {
+                sb.append(";").append(valores[i]);
+            }
         }
 
 

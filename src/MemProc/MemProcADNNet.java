@@ -171,7 +171,7 @@ public class MemProcADNNet {
             Double posicion = e.getKey();
             
             sb.append(m.hashCode()).append("[")
-                    .append("label=").append(m.get())
+                    .append("label=\"").append(posicion).append("[").append(m.get()).append("]\"")
                     .append(", ").append("shape=box");
                     
                     //Si está en el rango de las entradas la pintamos de verde

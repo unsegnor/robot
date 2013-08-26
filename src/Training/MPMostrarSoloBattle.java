@@ -31,8 +31,8 @@ public class MPMostrarSoloBattle {
         int ngrupos = 3;
         int nhijos = 3;
         
-        String id_ejecucion = "21082013122802";
-        int generacion = 7500;
+        String id_ejecucion = "25082013235042";
+        int generacion = 8991;
 
         MPEvoManager evo = new MPEvoManager();
 

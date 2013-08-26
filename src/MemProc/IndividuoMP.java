@@ -10,30 +10,28 @@ import General.Individuo;
  *
  * @author Víctor
  */
-public class IndividuoMP{
+public class IndividuoMP extends Individuo{
     
-    public boolean calculado = false;
-    public double ultimo_resultado = 0;
-    
-    private MemProcADN adn;
+    private MemProcADN MPadn;
     
 
     /**
      * @return the adn
      */
+    @Override
     public MemProcADN getAdn() {
-        return adn;
+        return MPadn;
     }
 
     /**
      * @param adn the adn to set
      */
     public void setAdn(MemProcADN adn) {
-        this.adn = adn;
+        this.MPadn = adn;
     }
     @Override
     public String toString(){
-        return adn.toString();
+        return MPadn.toString();
     }
     
 }

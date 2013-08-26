@@ -4,6 +4,7 @@
  */
 package MemProc;
 
+import General.Individuo;
 import Genetica.NNSADNF.IndividuoNNS;
 import java.util.Comparator;
 
@@ -11,25 +12,25 @@ import java.util.Comparator;
  *
  * @author Víctor
  */
-class OrdenarPoblacionMP implements Comparator<IndividuoMP> {
+class OrdenarPoblacion implements Comparator<Individuo> {
 
 
         boolean inverso = false;
     
-    public OrdenarPoblacionMP(){
+    public OrdenarPoblacion(){
         init(false);
     }
     
-    public OrdenarPoblacionMP(boolean inverso){
+    public OrdenarPoblacion(boolean inverso){
         init(inverso);
     }
     
     @Override
-    public int compare(IndividuoMP o1, IndividuoMP o2) {
+    public int compare(Individuo o1, Individuo o2) {
         if(inverso){
-            return Double.compare(o2.ultimo_resultado, o1.ultimo_resultado);
+            return Double.compare(o2.getUltimo_resultado(), o1.getUltimo_resultado());
         }else{
-            return Double.compare(o1.ultimo_resultado, o2.ultimo_resultado);
+            return Double.compare(o1.getUltimo_resultado(), o2.getUltimo_resultado());
         }
     }
 

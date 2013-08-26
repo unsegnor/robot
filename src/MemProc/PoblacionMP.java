@@ -15,9 +15,7 @@ import java.util.Collections;
  *
  * @author Víctor
  */
-public class PoblacionMP {
-
-    public static final String rutaPoblacion = "poblacionMP";
+public class PoblacionMP implements I_PoblacionMP {
 
         private ArrayList<IndividuoMP> individuos = new ArrayList<IndividuoMP>();
     
@@ -68,10 +66,12 @@ public class PoblacionMP {
         return respuesta;
     }
 
+    @Override
     public void grabar() {
         grabarPoblacion(this);
     }
 
+    @Override
     public void grabar(String ruta) {
         grabarPoblacion(this, ruta);
     }
@@ -111,6 +111,7 @@ public class PoblacionMP {
     /**
      * @return the individuos
      */
+    @Override
     public ArrayList<IndividuoMP> getIndividuos() {
         return individuos;
     }
@@ -118,10 +119,12 @@ public class PoblacionMP {
     /**
      * @param individuos the individuos to set
      */
+    @Override
     public void setIndividuos(ArrayList<IndividuoMP> individuos) {
         this.individuos = individuos;
     }
 
+    @Override
     public PoblacionMP ordenar(boolean inverso) {
          PoblacionMP respuesta = new PoblacionMP();
         
@@ -129,7 +132,7 @@ public class PoblacionMP {
         respuesta.setIndividuos(new ArrayList<IndividuoMP>(this.getIndividuos()));
         
         //Ordenamos el vector de la respuesta
-        Collections.sort(respuesta.getIndividuos(), new OrdenarPoblacionMP(inverso));
+        Collections.sort(respuesta.getIndividuos(), new OrdenarPoblacion(inverso));
         
         
         return respuesta;

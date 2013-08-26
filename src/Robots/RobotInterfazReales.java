@@ -21,7 +21,7 @@ public class RobotInterfazReales extends RobInterfazAsync{
     public RobotOutput responder (RobotInput input){
         RobotOutput out = new RobotOutput();
         
-        double[] e = new double[100];
+        double[] e = new double[nentradas];
         
         //Valores reales
         e[0] = F.q(input.getBattleFieldHeight(), 5000, 0);

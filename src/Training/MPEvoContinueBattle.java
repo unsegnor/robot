@@ -79,7 +79,7 @@ public class MPEvoContinueBattle {
                 IndividuoMP individuo = peores.getIndividuos().get(j);
                 MemProcADN nuevoadn = descendientes.getIndividuos().get(j).getAdn();
                 individuo.setAdn(nuevoadn);
-                individuo.calculado = false;
+                individuo.setCalculado(false);
             }
 
 

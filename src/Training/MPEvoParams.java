@@ -21,7 +21,7 @@ public class MPEvoParams {
     private double diferencia_minima_en_cruce = 0;
     private int maximo_decremento_adn = 0;
     private int maximo_incremento_adn = 0;
-    
+    private boolean saveResult = true; //indica si se guardan los resultados de una evaluación a la siguiente
     
     private boolean debug = false;
     private MemProcADN solucion;
@@ -169,6 +169,24 @@ public class MPEvoParams {
         
         
     }
+    
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append(this.getDiferencia_minima_en_cruce()).append(";");
+        sb.append(this.getLongitud_solucion_inicial()).append(";");
+        sb.append(this.getMaximo_decremento_adn()).append(";");
+        sb.append(this.getMaximo_incremento_adn()).append(";");
+        sb.append(this.getNumero_de_competidores()).append(";");
+        sb.append(this.getNumero_de_descendientes()).append(";");
+        sb.append(this.getNumero_de_individuos()).append(";");
+        sb.append(this.getNumero_de_progenitores()).append(";");
+        sb.append(this.getProbabilidad_de_mutacion()).append(";");
+        
+        return sb.toString();
+        
+    }
 
     /**
      * @return the debug
@@ -210,6 +228,20 @@ public class MPEvoParams {
      */
     public void setPrintToFile(boolean printToFile) {
         this.printToFile = printToFile;
+    }
+
+    /**
+     * @return the saveResult
+     */
+    public boolean isSaveResult() {
+        return saveResult;
+    }
+
+    /**
+     * @param saveResult the saveResult to set
+     */
+    public void setSaveResult(boolean saveResult) {
+        this.saveResult = saveResult;
     }
     
 }

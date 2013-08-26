@@ -4,6 +4,9 @@
  */
 package MemProc;
 
+import General.ResultadosBatalla;
+import General.AnotadorDeResultados;
+
 /**
  * lanza batallas y devuelve los resultados
  * @author Víctor

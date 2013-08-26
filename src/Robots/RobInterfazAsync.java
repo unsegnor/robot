@@ -176,14 +176,11 @@ public class RobInterfazAsync extends AdvancedRobot {
 
         while (true) {
 
-            //Reiniciar las entradas
-            this.reiniciar_input();
-
             //Obtener entradas
             RobotInput input = this.getInput();
             //Calcular salidas
             RobotOutput output = this.responder(input);
-            
+
             //Preparar acciones
             if (output.isAhead()) {
                 setAhead(output.getV_ahead());
@@ -233,7 +230,10 @@ public class RobInterfazAsync extends AdvancedRobot {
 
             //Deja de hacer lo que estuvieras haciendo
             //stop(true);
-            
+
+            //Reiniciar las entradas
+            this.reiniciar_input();
+
             //Ejecutar las salidas
             execute();
 

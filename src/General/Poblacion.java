@@ -10,8 +10,10 @@ import java.util.ArrayList;
  *
  * @author Víctor
  */
-public interface Poblacion {
+public interface Poblacion<K extends Individuo> {
     
-    public ArrayList<Individuo> getIndividuos();
+    public ArrayList<K> getIndividuos();
+    
+    public Poblacion poblacionAleatoria(int n);
     
 }

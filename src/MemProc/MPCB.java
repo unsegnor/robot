@@ -4,6 +4,8 @@
  */
 package MemProc;
 
+import General.ResultadosBatalla;
+import General.AnotadorDeResultados;
 import Genetica.NNSADNF.NNSEvoManager;
 import Robots.NNSADNFR;
 import robocode.control.events.BattleAdaptor;
@@ -52,6 +54,7 @@ public class MPCB extends BattleAdaptor{
 
                 //Almacenamos el resultado del robot
                 resultados[id_robot] = result.getScore();
+                //resultados[id_robot] = result.getBulletDamage();
 
                 //System.out.println("  " + result.getTeamLeaderName() + ": " + result.getScore());
 

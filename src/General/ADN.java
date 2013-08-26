@@ -8,14 +8,28 @@ package General;
  *
  * @author Víctor
  */
-public interface ADN {
-    
-    public ADN aleatorio();
-    
-    public ADN aleatorio(int longitud);
-    
-    public ADN cruzar(ADN a, ADN b);
-    
-    public ADN mutar(ADN a);
-    
+public class ADN {
+
+    public static ADN aleatorio() {
+        return null;
+    }
+
+    public static ADN aleatorio(int longitud) {
+        return null;
+    }
+
+
+    public ADN cruzar(ADN a, ADN b) {
+        return null;
+    }
+
+
+    public ADN mutar(ADN a) {
+        return null;
+    }
+
+
+    public double[] getValores() {
+        return null;
+    }
 }

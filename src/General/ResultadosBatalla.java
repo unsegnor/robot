@@ -2,14 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package MemProc;
+package General;
 
 /**
  *
  * @author Víctor
  */
-interface AnotadorDeResultados {
+public class ResultadosBatalla {
     
-    public void anotarResultados(ResultadosBatalla resultados);
+    public double[] resultados;
+    public int[] orden;
     
 }

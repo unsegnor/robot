@@ -4,6 +4,8 @@
  */
 package MemProc;
 
+import General.ResultadosBatalla;
+import General.AnotadorDeResultados;
 import Genetica.NNSADNF.IndividuoNNS;
 import Genetica.NNSADNF.NNSADNFix;
 import Genetica.NNSADNF.PoblacionNNS;
@@ -131,6 +133,8 @@ public class MPEvoManager implements AnotadorDeResultados {
 
         if (enemigo == 1) {
             sb.append("," + "sample.SpinBot");
+        } else if (enemigo == 2) {
+            sb.append("," + "sample.Walls");
         }
 
         RobotSpecification[] selectedRobots = engine.getLocalRepository(sb.toString());
@@ -188,12 +192,12 @@ public class MPEvoManager implements AnotadorDeResultados {
         for (int i = 0; i < seleccionados.size(); i++) {
             IndividuoMP individuo = seleccionados.get(i);
 
-            if (!individuo.calculado) {
-                individuo.ultimo_resultado = this.evaluar(individuo, params, state);
-                individuo.calculado = true;
+            if (!individuo.isCalculado()) {
+                individuo.setUltimo_resultado(this.evaluar(individuo, params, state));
+                individuo.setCalculado(true);
             }
 
-            double resultado = individuo.ultimo_resultado;
+            double resultado = individuo.getUltimo_resultado();
             //Nos quedamos con el mejor
             if (resultado > maxeval) {
                 maxeval = resultado;
@@ -218,12 +222,12 @@ public class MPEvoManager implements AnotadorDeResultados {
         for (int i = 0; i < seleccionados.size(); i++) {
             IndividuoMP individuo = seleccionados.get(i);
 
-            if (!individuo.calculado) {
-                individuo.ultimo_resultado = this.evaluar(individuo, params, state);
-                individuo.calculado = true;
+            if (!individuo.isCalculado()) {
+                individuo.setUltimo_resultado(this.evaluar(individuo, params, state));
+                individuo.setCalculado(true);
             }
 
-            double resultado = individuo.ultimo_resultado;
+            double resultado = individuo.getUltimo_resultado();
             //Nos quedamos con el mejor
             if (resultado > maxeval) {
                 maxeval = resultado;
@@ -239,7 +243,7 @@ public class MPEvoManager implements AnotadorDeResultados {
 
         if (params.isDebug()) {
 
-            
+
             state.nevals++;
             respuesta = this.distancia(individuo.getAdn(), params.getSolucion());
 
@@ -401,12 +405,12 @@ public class MPEvoManager implements AnotadorDeResultados {
         for (int i = 0; i < seleccionados.size(); i++) {
             IndividuoMP individuo = seleccionados.get(i);
 
-            if (!individuo.calculado) {
-                individuo.ultimo_resultado = this.evaluar(individuo, params, state);
-                individuo.calculado = true;
+            if (!individuo.isCalculado()) {
+                individuo.setUltimo_resultado(this.evaluar(individuo, params, state));
+                individuo.setCalculado(true);
             }
 
-            double resultado = individuo.ultimo_resultado;
+            double resultado = individuo.getUltimo_resultado();
             //Nos quedamos con el mejor
             if (resultado < mineval) {
                 mineval = resultado;
@@ -437,9 +441,9 @@ public class MPEvoManager implements AnotadorDeResultados {
 
             for (int i = 0; i < npoblacion; i++) {
                 IndividuoMP individuo = poblacion.getIndividuos().get(i);
-                if (individuo.calculado) {
-                    double eval = individuo.ultimo_resultado;
-                    if(eval > state.getMaxeval()){
+                if (individuo.isCalculado()) {
+                    double eval = individuo.getUltimo_resultado();
+                    if (eval > state.getMaxeval()) {
                         state.setMaxeval(eval);
                         state.adn = Arrays.copyOf(individuo.getAdn().valores, individuo.getAdn().valores.length);
                     }
@@ -463,8 +467,8 @@ public class MPEvoManager implements AnotadorDeResultados {
                 IndividuoMP individuo = poblacion.getIndividuos().get(i);
 
                 double valor = -1;
-                if (individuo.calculado) {
-                    valor = individuo.ultimo_resultado;
+                if (individuo.isCalculado()) {
+                    valor = individuo.getUltimo_resultado();
 
                     if (valor > max) {
                         max = valor;
@@ -555,8 +559,8 @@ public class MPEvoManager implements AnotadorDeResultados {
 
                 double result = Double.parseDouble(s_resultados[i]);
                 if (result >= 0) {
-                    respuesta.getIndividuos().get(i).ultimo_resultado = result;
-                    respuesta.getIndividuos().get(i).calculado = true;
+                    respuesta.getIndividuos().get(i).setUltimo_resultado(result);
+                    respuesta.getIndividuos().get(i).setCalculado(true);
                 }
             }
         }
@@ -572,9 +576,9 @@ public class MPEvoManager implements AnotadorDeResultados {
         //Los evaluamos a todos y ordenamos de mejor a peor
         for (int i = 0; i < competidores.getIndividuos().size(); i++) {
             IndividuoMP individuo = competidores.getIndividuos().get(i);
-            if (!individuo.calculado) {
-                individuo.ultimo_resultado = this.evaluar(individuo, params, state);
-                individuo.calculado = true;
+            if (!individuo.isCalculado()) {
+                individuo.setUltimo_resultado(this.evaluar(individuo, params, state));
+                individuo.setCalculado(true);
             }
         }
 
@@ -602,7 +606,7 @@ public class MPEvoManager implements AnotadorDeResultados {
 
             individuo.setAdn(descendientes.getIndividuos().get(i).getAdn());
 
-            individuo.calculado = false;
+            individuo.setCalculado(false);
 
         }
 
@@ -632,5 +636,12 @@ public class MPEvoManager implements AnotadorDeResultados {
         //hacemos la raíz cuadrada para obtener la distancia
         return Math.sqrt(diferencias);
 
+    }
+
+    public void guardarParams(String id_ejecucion, MPEvoParams params) {
+        if (params.isPrintToFile()) {
+            F.crearCarpeta("resultados/" + id_ejecucion);
+            F.guardarArchivo("resultados/" + id_ejecucion + "/" + id_ejecucion + "-params", params.toString());
+        }
     }
 }
